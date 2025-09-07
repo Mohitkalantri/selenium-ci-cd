@@ -1,0 +1,16 @@
+# Python artifacts
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+.env
+
+# Allure report outputs
+allure-results/
+allure-report/
+reports/
+
+# IDE specific files
+.idea/
+.vscode/
