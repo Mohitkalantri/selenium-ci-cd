@@ -4,7 +4,9 @@ import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+
+# Removed the import for webdriver-manager, as we are no longer using it
+# from webdriver_manager.chrome import ChromeDriverManager
 
 def get_chrome_options():
     options = Options()
@@ -18,16 +20,25 @@ def get_chrome_options():
 
 @pytest.fixture(scope="function")
 def driver():
-    """Sets up and tears down the Selenium WebDriver for each test function."""
+    """
+    Sets up and tears down the Selenium WebDriver for each test function.
+    """
     opts = get_chrome_options()
-    service = ChromeService(ChromeDriverManager().install())
+    
+    # We are now using a manual path to the driver.exe file
+    # This assumes you have downloaded chromedriver.exe and placed it in a 'drivers' folder.
+    driver_path = os.path.join(os.getcwd(), 'drivers', 'chromedriver.exe')
+    service = ChromeService(executable_path=driver_path)
+    
     driver = webdriver.Chrome(service=service, options=opts)
     yield driver
     driver.quit()
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    """Attaches a screenshot to the Allure report if a test fails."""
+    """
+    Attaches a screenshot to the Allure report if a test fails.
+    """
     outcome = yield
     report = outcome.get_result()
     if report.when == "call" and report.failed:
@@ -41,5 +52,7 @@ def pytest_runtest_makereport(item, call):
 
 @pytest.fixture(scope="session")
 def base_url():
-    """Provides the base URL from an environment variable."""
+    """
+    Provides the base URL from an environment variable.
+    """
     return os.getenv("TARGET_URL", "https://example.com")
