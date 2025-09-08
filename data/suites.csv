@@ -1,3 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Mon Sep 08 21:03:00 GMT 2025","Mon Sep 08 21:03:00 GMT 2025","0","tests","test_login","","","","Valid login should succeed",""
-"broken","Mon Sep 08 21:03:01 GMT 2025","Mon Sep 08 21:03:01 GMT 2025","0","tests","test_login","","","","Invalid login shows error",""
+"passed","Mon Sep 08 21:09:52 GMT 2025","Mon Sep 08 21:09:53 GMT 2025","1503","tests","test_login","","","","Valid login should succeed",""
+"passed","Mon Sep 08 21:09:54 GMT 2025","Mon Sep 08 21:09:55 GMT 2025","807","tests","test_login","","","","Invalid login shows error",""
