@@ -7,39 +7,30 @@ on:
   pull_request:
     branches:
       - main
-      
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.x'
-        
+
+    # Add this step to install the Chrome browser and driver
     - name: Install dependencies
       run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser chromium-chromedriver
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    
-    # Add this step to change the permissions of chromedriver.exe
-    - name: Make chromedriver executable
-      run: chmod +x drivers/chromedriver.exe
-      
+
     - name: Run Pytest tests
       run: pytest --alluredir=allure-results
-      
-    - name: Get Allure history
-      uses: actions/checkout@v4
-      if: always()
-      continue-on-error: true
-      with:
-        ref: gh-pages
-        path: gh-pages
-        
+
     - name: Generate Allure report
       if: always()
       uses: simple-elf/allure-report-action@v1.7
@@ -47,7 +38,7 @@ jobs:
         allure_results: allure-results
         gh_pages: gh-pages
         allure_history: allure-history
-        
+
     - name: Deploy to GitHub Pages
       if: always()
       uses: peaceiris/actions-gh-pages@v3

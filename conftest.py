@@ -20,16 +20,9 @@ def get_chrome_options():
 
 @pytest.fixture(scope="function")
 def driver():
-    """
-    Sets up and tears down the Selenium WebDriver for each test function.
-    """
     opts = get_chrome_options()
-    
-    # We are now using a manual path to the driver.exe file
-    # This assumes you have downloaded chromedriver.exe and placed it in a 'drivers' folder.
-    driver_path = os.path.join(os.getcwd(), 'drivers', 'chromedriver.exe')
-    service = ChromeService(executable_path=driver_path)
-    
+    # This will now look for the chromedriver executable in the system's PATH
+    service = ChromeService() 
     driver = webdriver.Chrome(service=service, options=opts)
     yield driver
     driver.quit()
