@@ -3,25 +3,21 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-class LoginPage:
-    PATH = "/login"
+class ProfessionalLoginPage:
+    # Update this to your live URL
+    PATH = "https://mohitkalantri.github.io/test_login/index.html"
     
     USERNAME = (By.ID, "username")
     PASSWORD = (By.ID, "password")
+    LOGIN_BUTTON = (By.ID, "loginButton")
     
-    # Updated locator for the login button.
-    # It looks for a button that contains the text 'Login' inside an <i> tag.
-    LOGIN_BUTTON = (By.CSS_SELECTOR, "button[type='submit']") 
-    
-    SUCCESS_MESSAGE = (By.ID, "flash")
-    ERROR_MESSAGE = (By.ID, "flash")
+    MESSAGE = (By.ID, "message")
 
-    def __init__(self, driver, base_url):
+    def __init__(self, driver):
         self.driver = driver
-        self.base_url = base_url
 
     def open(self):
-        self.driver.get(self.base_url + self.PATH)
+        self.driver.get(self.PATH)
 
     def set_username(self, username):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.USERNAME)).clear()
@@ -34,14 +30,8 @@ class LoginPage:
     def submit(self):
         self.driver.find_element(*self.LOGIN_BUTTON).click()
 
-    def get_success_message(self):
+    def get_message(self):
         try:
-            return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.SUCCESS_MESSAGE)).text
-        except:
-            return ""
-
-    def get_error_message(self):
-        try:
-            return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.ERROR_MESSAGE)).text
+            return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.MESSAGE)).text
         except:
             return ""
