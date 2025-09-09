@@ -16,10 +16,8 @@ def test_professional_login(driver):
     page.set_password("password123")
     page.submit()
     
-    # Check for the successful login message
     WebDriverWait(driver, 5).until(EC.text_to_be_present_in_element((By.ID, "message"), "Login successful!"))
     
-    # Assert that the correct title is present after the page has loaded
     assert "Professional Login Page" in driver.title
     
 @allure.title("Professional login test (invalid credentials)")
@@ -31,7 +29,6 @@ def test_invalid_login(driver):
     page.set_password("wrong_password")
     page.submit()
     
-    # Check for the error message
     WebDriverWait(driver, 5).until(EC.text_to_be_present_in_element((By.ID, "message"), "Invalid credentials. Please try again."))
     
     message = page.get_message()

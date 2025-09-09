@@ -4,15 +4,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class ProfessionalLoginPage:
-    # This is the public URL of your website hosted on GitHub Pages
-    PATH = "https://mohitkalantri.github.io/selenium-ci-cd/index.html"
+    # Set the PATH to the local file path of your HTML page
+    PATH = "file:///C:/Users/mohit/Documents/selenium-ci-cd/index.html"
     
-    # Locators for your new professional_login.html file
     USERNAME = (By.ID, "username")
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "loginButton")
     
-    # This locator will be used for both success and error messages
     MESSAGE = (By.ID, "message")
 
     def __init__(self, driver):
