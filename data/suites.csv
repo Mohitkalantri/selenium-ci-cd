@@ -1,5 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Tue Sep 09 08:06:22 GMT 2025","Tue Sep 09 08:06:22 GMT 2025","0","tests","test_professional_login","","","","Professional login test (valid credentials)",""
-"broken","Tue Sep 09 08:06:23 GMT 2025","Tue Sep 09 08:06:23 GMT 2025","0","tests","test_professional_login","","","","Professional login test (invalid credentials)",""
-"passed","Tue Sep 09 08:06:18 GMT 2025","Tue Sep 09 08:06:20 GMT 2025","2129","tests","test_login","","","","Valid login should succeed",""
-"passed","Tue Sep 09 08:06:21 GMT 2025","Tue Sep 09 08:06:22 GMT 2025","469","tests","test_login","","","","Invalid login shows error",""
+"passed","Tue Sep 09 09:11:45 GMT 2025","Tue Sep 09 09:11:47 GMT 2025","1496","tests","test_login","","","","Valid login should succeed",""
+"passed","Tue Sep 09 09:11:47 GMT 2025","Tue Sep 09 09:11:49 GMT 2025","1325","tests","test_login","","","","Invalid login shows error",""
